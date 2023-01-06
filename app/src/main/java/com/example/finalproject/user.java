@@ -52,37 +52,37 @@ public class user extends AppCompatActivity {
         customAdaptor = new CustomAdaptor(listItems, this);
         listView.setAdapter(customAdaptor);
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-
-        MenuItem menuItem = menu.findItem(R.id.search_view);
-        SearchView searchView = (SearchView) menuItem.getActionView();
-        searchView.setQueryHint("type here to search");
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                customAdaptor.getFilter().filter(newText);
-                return false;
-            }
-        });
-    return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        if(id == R.id.search_view){
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu, menu);
+//
+//        MenuItem menuItem = menu.findItem(R.id.search_view);
+//        SearchView searchView = (SearchView) menuItem.getActionView();
+//        searchView.setQueryHint("type here to search");
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                customAdaptor.getFilter().filter(newText);
+//                return false;
+//            }
+//        });
+//    return super.onCreateOptionsMenu(menu);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        int id = item.getItemId();
+//        if(id == R.id.search_view){
+//            return true;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     public class CustomAdaptor extends BaseAdapter implements Filterable {
         private List<ItemsModel> itemsModelList;
@@ -131,36 +131,41 @@ public class user extends AppCompatActivity {
 
         @Override
         public Filter getFilter() {
-            Filter filter = new Filter() {
-                @Override
-                protected FilterResults performFiltering(CharSequence charSequence) {
-                    FilterResults filterResults = new FilterResults();
-                    String constraint = null;
-                    if(constraint == null || constraint.length() == 0){
-                        filterResults.count = itemsModelList.size();
-                        filterResults.values = itemsModelList;
-                    }else {
-                        String searchStr = constraint.toString().toLowerCase();
-                        List<ItemsModel> resultData = new ArrayList<>();
-                        for(ItemsModel itemsModel:itemsModelList){
-                            if (itemsModel.getName().contains(searchStr) || itemsModel.getDesc().contains(searchStr)){
-                                resultData.add(itemsModel);
-                            }
-                            filterResults.count = resultData.size();
-                            filterResults.values = resultData;
-                        }
-                    }
-                    return filterResults;
-                }
-
-                @Override
-                protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                    itemsModelListFiltered = (List<ItemsModel>) filterResults.values;
-                    notifyDataSetChanged();
-
-                }
-            };
-            return filter;
+            return null;
         }
+
+//        @Override
+//        public Filter getFilter() {
+//            Filter filter = new Filter() {
+//                @Override
+//                protected FilterResults performFiltering(CharSequence charSequence) {
+//                    FilterResults filterResults = new FilterResults();
+//                    String constraint = null;
+//                    if(constraint == null || constraint.length() == 0){
+//                        filterResults.count = itemsModelList.size();
+//                        filterResults.values = itemsModelList;
+//                    }else {
+//                        String searchStr = constraint.toString().toLowerCase();
+//                        List<ItemsModel> resultData = new ArrayList<>();
+//                        for(ItemsModel itemsModel:itemsModelList){
+//                            if (itemsModel.getName().contains(searchStr) || itemsModel.getDesc().contains(searchStr)){
+//                                resultData.add(itemsModel);
+//                            }
+//                            filterResults.count = resultData.size();
+//                            filterResults.values = resultData;
+//                        }
+//                    }
+//                    return filterResults;
+//                }
+//
+//                @Override
+//                protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+//                    itemsModelListFiltered = (List<ItemsModel>) filterResults.values;
+//                    notifyDataSetChanged();
+//
+//                }
+//            };
+//            return filter;
+//        }
     }
 }
