@@ -27,10 +27,10 @@ public class MainActivity extends AppCompatActivity {
         _btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(_txtUser.getText().toString().equals("admin") && _txtPass.getText().toString().equals("admin")){
+                if(_txtUser.getText().toString().equals("admin") && _txtPass.getText().toString().equals("123")){
                     Intent intent = new Intent(MainActivity.this, admin.class);
                     startActivity(intent);
-                }else if(_txtUser.getText().toString().equals("user") && _txtPass.getText().toString().equals("user")){
+                }else if(_txtUser.getText().toString().equals("user") && _txtPass.getText().toString().equals("123")){
                     Intent intent = new Intent(MainActivity.this, user.class);
                     startActivity(intent);
                 }else {
